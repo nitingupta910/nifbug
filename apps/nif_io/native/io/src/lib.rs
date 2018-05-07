@@ -7,7 +7,11 @@ extern crate graph;
 
 use rustler::{Encoder, Env, Error, Term};
 
-rustler_export_nifs!("Elixir.NifIo", [("foo", 0, graph_foo)], Some(on_load));
+rustler_export_nifs!(
+    "Elixir.NifIo.Native",
+    [("foo", 0, graph_foo)],
+    Some(on_load)
+);
 
 fn on_load(_env: Env, _info: Term) -> bool {
     true

@@ -1,6 +1,6 @@
 [workspace]
 
 members = [
-    "apps/NifIo/native/io",
+    "apps/nif_io/native/io",
     "rs/graph"
 ]
