@@ -1,5 +1,6 @@
-pub fn foo() {
+pub fn foo() -> u32 {
     println!("graph: foo called");
+    9
 }
 
 #[cfg(test)]

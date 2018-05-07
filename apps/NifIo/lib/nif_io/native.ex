@@ -1,13 +1,11 @@
 defmodule NifIo.Native.FileOpenOptions do
-  defstruct [
-    path: nil,
-    read: true,
-    write: true,
-    append: false,
-    truncate: false,
-    create: true,
-    create_new: false,
-  ]
+  defstruct path: nil,
+            read: true,
+            write: true,
+            append: false,
+            truncate: false,
+            create: true,
+            create_new: false
 end
 
 defmodule NifIo.Native do
@@ -15,6 +13,7 @@ defmodule NifIo.Native do
 
   def open(_options), do: error()
   def read_until(_resource, _byte), do: error()
+  def graph_foo(), do: error()
 
   defp error, do: :erlang.nif_error(:nif_not_loaded)
 end

@@ -6,6 +6,8 @@ extern crate rustler;
 #[macro_use]
 extern crate rustler_codegen;
 
+extern crate graph;
+
 use std::fs::{File, OpenOptions};
 use std::io::{BufRead, Write};
 use std::io::Error as IoError;
@@ -53,7 +55,7 @@ rustler_export_nifs!(
     [
         ("open", 1, open_file),
         ("read_until", 2, read_until),
-        ("foo", 0, "graph_foo")
+        ("foo", 0, graph_foo)
     ],
     Some(on_load)
 );
@@ -82,6 +84,12 @@ macro_rules! handle_io_error {
             Err(ref error) => return Ok(io_error_to_term($env, error)),
         }
     };
+}
+
+fn graph_foo<'a>(env: Env<'a>, _args: &[Term<'a>]) -> Result<Term<'a>, Error> {
+    println!("graph_foo from NifIo");
+    let ret: u32 = graph::foo();
+    Ok(ret.encode(env))
 }
 
 fn open_file<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
