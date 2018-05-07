@@ -1,13 +1,7 @@
 defmodule NifIo do
+  use Rustler, otp_app: :nif_io, crate: :io
 
-  # TODO: Make this function more File.open
-  def open(path) when is_binary(path) do
-    options = %NifIo.Native.FileOpenOptions{path: path}
-    case NifIo.Native.open(options) do
-      {:error, err} -> {:error, err}
-      res -> {:ok, NifIo.FileHandle.wrap_resource(res)}
-    end
-  end
+  def graph_foo(), do: error()
 
+  defp error, do: :erlang.nif_error(:nif_not_loaded)
 end
-
