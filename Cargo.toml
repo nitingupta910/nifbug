@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "apps/NifIo/native/io",
+    "rs/graph"
+]
